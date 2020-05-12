@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tx_login_room"> Log in to the room </string>
+    <string name="tx_publishing"> Pushing stream </string>
+        
+    <string name="tx_publish_fail"> Push stream failed </string>
+        
+    <string name="tx_stop_publish_finish"> Stop pushing stream completion </string>
+
+
+    <string name="fu_base_debug">Resolution:\n\t%dX%d\nFPS: %d\nRender time:\n\t%dms</string>
+
+
+    <string name="memTexture2D_describe"> asynchronous transfer texture ID, SDK will throw RGBA32 image data, can pass the pre-processed texture ID to SDK </string>
+    through onProcessCallback method
+    <string name="loading"> Loading </string>
+    <string name="tx_video_filter">ZegoExpressExample-FaceUnity</string>
+    <string name="i420Mem_describe"> asynchronous transfer of I420 image data </string>
+    <string name="surfaceTexture_describe"> passes the SurfaceTexture, and the SDK calls getSurfaceTexture of this filter to get the SurfaceTexture object </string>
+
+    <string name="tx_filter_type">Select the type of data to be passed before processing: </string>
+    <string name="room_id_describe">roomID is the identity of a room, which is represented by a string of no more than 128 bytes in length. It is necessary to ensure that the roomID is globally unique </string>
+    <string name="tx_publish_success"> push stream completion </string>
+
+    <string name="home_function_name_beauty"> beauty </string>
+    <string name="home_function_name_normal"> prop sticker </string>
+
+    <string name="home_function_name_makeup"> beauty makeup </string>
+    <string name="sorry_no_permission"> Sorry, the certificate authority or SDK you use does not include this function. </string>
+    <string name="camera_dialog_title"> Warning </string>
+    <string name="camera_dialog_message"> camera permissions are disabled or the camera is occupied by other applications! </string>
+    <string name="camera_dialog_open"> Retry </string>
+    <string name="camera_dialog_back"> log out </string>
+
+    <string name="tx_sync_gl_texture_2d">BUFFER_TYPE_SYNC_GL_TEXTURE_2D</string>
+    <string name="tx_mem_gl_texture_2d">BUFFER_TYPE_HYBRID_MEM_GL_TEXTURE_2D</string>
+    <string name="tx_mem_rgba32">BUFFER_TYPE_MEM</string>
+    <string name="tx_asyn_i420_mem">BUFFER_TYPE_ASYNC_I420_MEM</string>
+    <string name="tx_surface_texture">BUFFER_TYPE_SURFACE_TEXTURE</string>
+
+    <string name="tx_has_no_fu_authpack"> faceunity ’s certificate is invalid, please replace the valid authpack file </string>
+    <string name="tx_login"> Log in to the room </string>
+
+    <string name="fu_base_is_tracking_text"> No face detected </string>
+    <string name="face_shape_4"> Customize </string>
+        
+    <string name="face_shape_3_default"> default </string>
+        
+    <string name="face_shape_0_nvshen"> Goddess </string>
+        
+    <string name="face_shape_1_wanghong"> Internet celebrity </string>
+        
+    <string name="face_shape_2_ziran"> Nature </string>
+        
+    <string name="beauty_box_skin_detect"> Precise skin beauty </string>
+        
+    <string name="beauty_box_skin_detect_close"> Precision beauty skin close </string>
+        
+    <string name="beauty_box_skin_detect_open"> Precision beauty skin opening </string>
+        
+    <string name="beauty_box_heavy_blur_double"> Hazy microdermabrasion </string>
+        
+    <string name="beauty_box_heavy_blur_normal"> Clear microdermabrasion </string>
+        
+    <string name="beauty_box_heavy_blur_normal_text"> Currently clear dermabrasion mode </string>
+        
+    <string name="beauty_box_heavy_blur_double_text"> currently hazy microdermabrasion mode </string>
+        
+    <string name="beauty_box_blur_level"> microdermabrasion </string>
+        
+    <string name="beauty_box_color_level"> whitening </string>
+        
+    <string name="beauty_box_red_level"> Red Run </string>
+        
+    <string name="beauty_box_eye_bright"> bright eyes </string>
+        
+    <string name="beauty_box_tooth_whiten"> Beautiful teeth </string>
+        
+    <string name="beauty_box_face_shape"> face shape </string>
+        
+    <string name="beauty_box_eye_enlarge"> Big Eye </string>
+        
+    <string name="beauty_box_cheek_thinning"> thin face </string>
+        
+    <string name="beauty_box_cheek_v"> V face </string>
+        
+    <string name="beauty_box_cheek_narrow"> narrow face </string>
+        
+    <string name="beauty_box_cheek_small"> small face </string>
+        
+    <string name="beauty_box_cheek_oval"> goose egg face </string>
+        
+    <string name="beauty_box_intensity_chin"> chin </string>
+        
+    <string name="beauty_box_intensity_forehead"> forehead </string>
+        
+    <string name="beauty_box_intensity_nose"> slim nose </string>
+        
+    <string name="beauty_box_intensity_mouth"> mouth shape </string>
+        
+    <string name="beauty_radio_skin_beauty"> beauty </string>
+        
+    <string name="beauty_radio_face_shape"> American type </string>
+        
+    <string name="beauty_radio_beauty_filter"> beauty filter </string>
+        
+    <string name="beauty_radio_filter"> filter </string>
+        
+    <string name="beauty_radio_beauty"> beauty </string>
+        
+    <string name="makeup_radio_lipstick"> lipstick </string>
+        
+    <string name="makeup_radio_blusher"> blush </string>
+        
+    <string name="makeup_radio_eyebrow"> eyebrows </string>
+        
+    <string name="makeup_radio_eye_shadow"> eye shadow </string>
+        
+    <string name="makeup_radio_eye_liner"> eyeliner </string>
+        
+    <string name="makeup_radio_eyelash"> lashes </string>
+        
+    <string name="makeup_radio_contact_lens"> beauty </string>
+        
+    <string name="makeup_radio_foundation"> foundation </string>
+        
+    <string name="makeup_radio_highlight"> Highlight </string>
+        
+    <string name="makeup_radio_shadow"> shadow </string>
+        
+    <string name="makeup_radio_remove"> Remove makeup </string>
+        
+    <string name="makeup_customize"> Customize </string>
+        
+    <string name="makeup_freckles"> Freckle makeup </string>
+        
+    <string name="makeup_punk"> Punk makeup </string>
+        
+    <string name="makeup_peach_blossom"> Peach Blossom </string>
+        
+    <string name="makeup_red_tea"> Red tea makeup </string>
+        
+    <string name="makeup_winter"> Winter makeup </string>
+        
+    <string name="makeup_boyfriend"> boyfriend </string>
+        
+    <string name="makeup_cream"> cream makeup </string>
+        
+    <string name="makeup_clear"> Clear </string>
+        
+    <string name="makeup_grapefruit"> Grapefruit </string>
+        
+    <string name="beauty_radio_stickers"> stickers </string>
+
+    <string name="origin"> original picture </string>
+        
+    <string name="delta"> Delta </string>
+        
+    <string name="electric"> Electric </string>
+        
+    <string name="slowlived"> Slowlived </string>
+        
+    <string name="tokyo"> Tokyo </string>
+        
+    <string name="warm"> Warm </string>
+        
+    <string name="ziran"> Natural </string>
+        
+    <string name="bailiang"> Bai Liang </string>
+        
+    <string name="danya"> Elegant </string>
+        
+    <string name="fennen"> Pink tender </string>
+        
+    <string name="qingxin"> Small fresh </string>
+        
+    <string name="lengsediao"> Cold tones </string>
+        
+    <string name="nuansediao"> warm colors </string>
+        
+    <string name="hongrun"> Red Run </string>
+
+        
+    <string name="dialog_got"> Got it </string>
+
+        
+    <string name="avatar_face_face"> face shape </string>
+        
+    <string name="avatar_face_eye"> eyes </string>
+        
+    <string name="avatar_face_lip"> lips </string>
+        
+    <string name="avatar_face_nose"> nose </string>
+        
+    <string name="avatar_face_eyebrow"> eyebrows </string>
+        
+    <string name="avatar_face_eyelash"> lashes </string>
+
+        
+    <string name="avatar_face_length"> face length </string>
+        
+    <string name="avatar_face_width"> cheek width </string>
+        
+    <string name="avatar_chin_width"> jaw width </string>
+        
+    <string name="avatar_chin_height"> High and low chin </string>
+        
+    <string name="avatar_eye_position"> eye position </string>
+        
+    <string name="avatar_eye_corner_height"> eye corner height </string>
+        
+    <string name="avatar_eye_height"> eye height </string>
+        
+    <string name="avatar_eye_width"> eye width </string>
+        
+    <string name="avatar_nose_position"> nose position </string>
+        
+    <string name="avatar_nose_width"> Nose wing width </string>
+        
+    <string name="avatar_nose_height"> Nose head height </string>
+        
+    <string name="avatar_mouth_position"> mouth position </string>
+        
+    <string name="avatar_up_lip_thickness"> upper lip thickness </string>
+        
+    <string name="avatar_down_lip_thickness"> lower lip thickness </string>
+        
+    <string name="avatar_lip_width"> lip width </string>
+
+        
+    <string name="dialog_reset_avatar_model"> Restore all parameters to default values? </string>
+        
+    <string name="avatar_face_customize"> Customize </string>
+
+        
+    <string name="recover">restore</string>
+        
+    <string name="dialog_confirm_delete"> Are you sure you want to delete the selected item? </string>
+        
+    <string name="toast_delete_succeed"> deleted successfully </string>
+        
+    <string name="toast_delete_failed"> Deletion failed </string>
+
+        
+
+</resources>

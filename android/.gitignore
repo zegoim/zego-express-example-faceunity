@@ -1,0 +1,12 @@
+/**/build
+/**/*.iml
+/**/.idea
+.gradle
+.DS_Store
+.externalNativeBuild
+.settings
+.classpath
+.project
+local.properties
+app/libs/*
+!app/libs/README.md
