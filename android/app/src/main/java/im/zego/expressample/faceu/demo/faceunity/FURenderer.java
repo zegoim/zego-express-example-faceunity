@@ -1173,7 +1173,7 @@ public class FURenderer implements OnFUControlListener {
      */
     public static class Builder {
 
-        private boolean createEGLContext = false;
+        private boolean createEGLContext = true;
         private Effect defaultEffect;
         private int maxFaces = 1;
         private Context context;
@@ -1452,6 +1452,9 @@ public class FURenderer implements OnFUControlListener {
                                 mLipStickColor = readMakeupLipColors(path);
                             } else {
                                 Pair<byte[], Pair<Integer, Integer>> pair = loadMakeupResource(path);
+                                if (pair == null) {
+                                    return;
+                                }
                                 itemBytes = pair.first;
                                 width = pair.second.first;
                                 height = pair.second.second;

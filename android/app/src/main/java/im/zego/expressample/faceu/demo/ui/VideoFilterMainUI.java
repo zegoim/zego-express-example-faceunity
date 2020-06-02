@@ -25,7 +25,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
     private ActivityVideoFilterMainBinding binding;
 
-    private FUBeautyActivity.FilterType mFilterType = FUBeautyActivity.FilterType.FilterType_SurfaceTexture;
+
 
     private static final int REQUEST_PERMISSION_CODE = 101;
 
@@ -40,7 +40,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
         setCheckedFilterTypeListener();
 
         // 前处理传递数据类型说明的点击事件监听
-        binding.MemTexture2DDescribe.setOnClickListener(this);
+        binding.asynI420MemDescribe.setOnClickListener(this);
 
         binding.goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,12 +60,11 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
     // 获取选定的前处理传递数据的类型
     public void setCheckedFilterTypeListener(){
-        binding.RadioMemTexture2D.setOnClickListener(new View.OnClickListener() {
+        binding.radioMem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 zegoEngineConfig.customVideoCaptureMainConfig = new ZegoCustomVideoCaptureConfig();
-                zegoEngineConfig.customVideoCaptureMainConfig.bufferType = ZegoVideoBufferType.SURFACE_TEXTURE;
-                mFilterType = FUBeautyActivity.FilterType.FilterType_SurfaceTexture;
+                zegoEngineConfig.customVideoCaptureMainConfig.bufferType = ZegoVideoBufferType.RAW_DATA;
             }
         });
     }
@@ -98,7 +97,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
             if (!"".equals(roomID)) {
                 ZegoExpressEngine.setEngineConfig(zegoEngineConfig);
                 // 跳转到创建并登录房间的页面
-                FUBeautyActivity.actionStart(VideoFilterMainUI.this, roomID, mFilterType);
+                FUBeautyActivity.actionStart(VideoFilterMainUI.this, roomID);
             } else {
                 Toast.makeText(VideoFilterMainUI.this, "room id is no null", Toast.LENGTH_SHORT).show();
 
@@ -133,7 +132,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-         if (id == R.id.MemTexture2DDescribe) {
+         if (id == R.id.asynI420MemDescribe) {
             showPopWindows(getString(R.string.memTexture2D_describe), v);
         }
     }

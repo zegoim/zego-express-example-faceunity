@@ -3,6 +3,7 @@ package im.zego.expressample.faceu.demo.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
@@ -11,13 +12,13 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 
 
-
 import org.json.JSONObject;
 
 import java.util.Date;
 
 
 import im.zego.expressample.faceu.demo.GetAppIDConfig;
+import im.zego.expressample.faceu.demo.capture.VideoCaptureFromCamera;
 import im.zego.expressample.faceu.demo.capture.VideoCaptureFromCamera2;
 import im.zego.expressample.faceu.demo.faceunity.FURenderer;
 import im.zego.expressample.faceu.demo.util.ZegoUtil;
@@ -26,7 +27,9 @@ import im.zego.expressample.faceu.demo.view.CustomDialog;
 import im.zego.expresssample.faceu.demo.R;
 import im.zego.expresssample.faceu.demo.databinding.ActivityFuBaseBinding;
 import im.zego.zegoexpress.ZegoExpressEngine;
+import im.zego.zegoexpress.callback.IZegoDestroyCompletionCallback;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
+import im.zego.zegoexpress.constants.ZegoPublishChannel;
 import im.zego.zegoexpress.constants.ZegoPublisherState;
 import im.zego.zegoexpress.constants.ZegoRoomState;
 import im.zego.zegoexpress.constants.ZegoScenario;
@@ -114,7 +117,10 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
     @Override
     public void finish() {
         super.finish();
-
+        if (videoCaptureFromCamera != null) {
+            videoCaptureFromCamera.onStop(ZegoPublishChannel.MAIN);
+        }
+        ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(null);
         // 停止预览
         ZegoExpressEngine.getEngine().stopPreview();
 
@@ -124,8 +130,8 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         // 登出房间
         ZegoExpressEngine.getEngine().logoutRoom(mRoomID);
 
-        // 释放 SDK
-        ZegoExpressEngine.destroyEngine(null);
+        ZegoExpressEngine.getEngine().setEventHandler(null);
+
     }
 
     // 前处理传递数据的类型枚举
@@ -138,12 +144,14 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
      *
      * @param activity
      */
-    public static void actionStart(Activity activity, String roomID, FilterType filterType) {
+    public static void actionStart(Activity activity, String roomID) {
         Intent intent = new Intent(activity, FUBeautyActivity.class);
         intent.putExtra("roomID", roomID);
-        intent.putExtra("FilterType", filterType);
+        // intent.putExtra("FilterType", filterType);
         activity.startActivity(intent);
     }
+
+    VideoCaptureFromCamera videoCaptureFromCamera;
 
     /**
      * 初始化SDK逻辑
@@ -151,16 +159,17 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
      */
     private void initSDK() {
 
+        Log.i("ZegoExpressEngine Version", ZegoExpressEngine.getVersion());
+
         // 设置外部滤镜---必须在初始化 ZEGO SDK 之前设置，否则不会回调   SyncTexture
-        ZegoExpressEngine.createEngine(GetAppIDConfig.appID, GetAppIDConfig.appSign, true, ZegoScenario.LIVE ,this.getApplication(), null);
-        if(FilterType.FilterType_SurfaceTexture == chooseFilterType) {
-            VideoCaptureFromCamera2 videoCaptureFromCamera = new VideoCaptureFromCamera2(mFURenderer);
-           // videoCaptureFromCamera.setView(binding.preview);
-            ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(videoCaptureFromCamera);
-        }
+        ZegoExpressEngine.createEngine(GetAppIDConfig.appID, GetAppIDConfig.appSign, true, ZegoScenario.LIVE, this.getApplication(), null);
+        //  if (FilterType.FilterType_SurfaceTexture == chooseFilterType) {
+        videoCaptureFromCamera = new VideoCaptureFromCamera(mFURenderer);
+        //videoCaptureFromCamera.setView();
+        ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(videoCaptureFromCamera);
+        // }
         // 初始化成功，登录房间并推流
         startPublish();
-
 
     }
 
@@ -205,7 +214,6 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
             }
         });
     }
-
 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FURenderer信息回调~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

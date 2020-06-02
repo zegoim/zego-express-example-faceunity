@@ -56,14 +56,14 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/RadioMemTexture2D"
+                        android:id="@+id/radioMem"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/tx_mem_gl_texture_2d" />
+                        android:text="@string/tx_asyn_i420_mem" />
 
                     <ImageView
-                        android:id="@+id/MemTexture2DDescribe"
+                        android:id="@+id/asynI420MemDescribe"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@mipmap/ic_mark" />
