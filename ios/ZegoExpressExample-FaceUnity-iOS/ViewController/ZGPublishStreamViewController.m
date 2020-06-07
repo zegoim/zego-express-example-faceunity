@@ -224,7 +224,7 @@
     CVPixelBufferRef processedPixelBuffer = [[FUManager shareManager] renderItemsToPixelBuffer:data];
 
     // ⭐️ Send pixel buffer to ZEGO SDK
-    [[ZegoExpressEngine sharedEngine] sendCustomVideoCapturePixelBuffer:processedPixelBuffer timeStamp:timeStamp];
+    [[ZegoExpressEngine sharedEngine] sendCustomVideoCapturePixelBuffer:processedPixelBuffer timestamp:timeStamp];
 }
 
 #pragma mark - ZegoEventHandler
