@@ -11,6 +11,7 @@
 
     <string name="fu_base_debug">Resolution:\n\t%dX%d\nFPS: %d\nRender time:\n\t%dms</string>
 
+    <string name="videoBufferType_describe">i420Mem: asynchronous transfer of I420 image data  \n\n surface_texture:asynchronous transfer texture ID, SDK will throw RGBA32 image data, can pass the pre-processed texture ID to SDK </string>
 
     <string name="memTexture2D_describe"> asynchronous transfer texture ID, SDK will throw RGBA32 image data, can pass the pre-processed texture ID to SDK </string>
     through onProcessCallback method

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -18,7 +19,6 @@ import im.zego.expresssample.faceu.demo.R;
 import im.zego.expresssample.faceu.demo.databinding.ActivityVideoFilterMainBinding;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.constants.ZegoVideoBufferType;
-import im.zego.zegoexpress.entity.ZegoCustomVideoCaptureConfig;
 import im.zego.zegoexpress.entity.ZegoEngineConfig;
 
 public class VideoFilterMainUI extends Activity implements View.OnClickListener {
@@ -28,6 +28,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
 
     private static final int REQUEST_PERMISSION_CODE = 101;
+    private ZegoVideoBufferType videoBufferType=ZegoVideoBufferType.RAW_DATA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
         setCheckedFilterTypeListener();
 
         // 前处理传递数据类型说明的点击事件监听
-        binding.asynI420MemDescribe.setOnClickListener(this);
+        binding.videoBufferTypeDescribe.setOnClickListener(this);
 
         binding.goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,11 +61,19 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
     // 获取选定的前处理传递数据的类型
     public void setCheckedFilterTypeListener(){
-        binding.radioMem.setOnClickListener(new View.OnClickListener() {
+        binding.captureBufferType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                zegoEngineConfig.customVideoCaptureMainConfig = new ZegoCustomVideoCaptureConfig();
-                zegoEngineConfig.customVideoCaptureMainConfig.bufferType = ZegoVideoBufferType.RAW_DATA;
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radioMem:
+                        videoBufferType=ZegoVideoBufferType.RAW_DATA;
+                        break;
+                    case R.id.radioSurfaceTexture:
+                        videoBufferType=ZegoVideoBufferType.SURFACE_TEXTURE;
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
@@ -97,7 +106,10 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
             if (!"".equals(roomID)) {
                 ZegoExpressEngine.setEngineConfig(zegoEngineConfig);
                 // 跳转到创建并登录房间的页面
-                FUBeautyActivity.actionStart(VideoFilterMainUI.this, roomID);
+                Intent intent = new Intent(VideoFilterMainUI.this, FUBeautyActivity.class);
+                intent.putExtra("roomID", roomID);
+                intent.putExtra("videoBufferType", videoBufferType.value());
+                startActivity(intent);
             } else {
                 Toast.makeText(VideoFilterMainUI.this, "room id is no null", Toast.LENGTH_SHORT).show();
 
@@ -132,8 +144,8 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-         if (id == R.id.asynI420MemDescribe) {
-            showPopWindows(getString(R.string.memTexture2D_describe), v);
+         if (id == R.id.videoBufferTypeDescribe) {
+            showPopWindows(getString(R.string.videoBufferType_describe), v);
         }
     }
 

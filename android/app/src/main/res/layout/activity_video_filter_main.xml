@@ -13,9 +13,9 @@
         android:orientation="vertical">
 
         <im.zego.expressample.faceu.demo.view.TitleLayout
-            app:name="@string/tx_video_filter"
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            app:name="@string/tx_video_filter">
 
             <Button
                 android:id="@+id/go_back"
@@ -31,16 +31,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/videoBufferTypeDescribe"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@mipmap/ic_mark" />
+    <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:textStyle="bold"
-                android:text="@string/tx_filter_type" />
+                android:text="@string/tx_filter_type"
+                android:textStyle="bold" />
 
+</LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,27 +60,30 @@
                 android:layout_marginRight="40dp"
                 android:orientation="vertical">
 
+                <RadioGroup
+                    android:id="@+id/captureBufferType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioMem"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:checked="true"
+
                         android:text="@string/tx_asyn_i420_mem" />
 
-                    <ImageView
-                        android:id="@+id/asynI420MemDescribe"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@mipmap/ic_mark" />
 
-                </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/radioSurfaceTexture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
+                        android:text="@string/tx_surface_texture" />
+
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -99,7 +113,6 @@
 
             <im.zego.expressample.faceu.demo.view.CustomEditText
                 android:id="@+id/ed_room_id"
-                app:key="room_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -108,7 +121,8 @@
                 android:background="@color/white_color"
                 android:hint="请输入roomID"
                 android:padding="8dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:key="room_id" />
 
             <TextView
                 android:id="@+id/login_room"
@@ -125,11 +139,11 @@
                 android:id="@+id/authpack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:textSize="@dimen/text_size_32"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_size_32" />
 
             <Button
                 android:id="@+id/loginBtn"

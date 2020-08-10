@@ -5,6 +5,7 @@
     <string name="tx_publishing">正在推流</string>
     <string name="tx_publish_fail">推流失败</string>
     <string name="tx_stop_publish_finish">停止推流完成</string>
+    <string name="videoBufferType_describe">i420Mem: 异步传递 I420 的图像数据  \n\n surface_texture:异步传递纹理 ID，SDK 会抛出 RGBA32 的图像数据，可通过 onProcessCallback 方法传递前处理后的纹理 ID 给 SDK  </string>
     <string name="memTexture2D_describe">异步传递纹理 ID，SDK 会抛出 RGBA32 的图像数据，可通过 onProcessCallback 方法传递前处理后的纹理 ID 给 SDK </string>
     <string name="i420Mem_describe">异步传递 I420 的图像数据</string>
     <string name="surfaceTexture_describe">传递 SurfaceTexture，SDK 会调用此滤镜的 getSurfaceTexture 获取 SurfaceTexture 对象</string>

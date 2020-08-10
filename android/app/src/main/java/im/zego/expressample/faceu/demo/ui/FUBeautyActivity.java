@@ -27,13 +27,16 @@ import im.zego.expressample.faceu.demo.view.CustomDialog;
 import im.zego.expresssample.faceu.demo.R;
 import im.zego.expresssample.faceu.demo.databinding.ActivityFuBaseBinding;
 import im.zego.zegoexpress.ZegoExpressEngine;
+import im.zego.zegoexpress.callback.IZegoCustomVideoCaptureHandler;
 import im.zego.zegoexpress.callback.IZegoDestroyCompletionCallback;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
 import im.zego.zegoexpress.constants.ZegoPublishChannel;
 import im.zego.zegoexpress.constants.ZegoPublisherState;
 import im.zego.zegoexpress.constants.ZegoRoomState;
 import im.zego.zegoexpress.constants.ZegoScenario;
+import im.zego.zegoexpress.constants.ZegoVideoBufferType;
 import im.zego.zegoexpress.entity.ZegoCanvas;
+import im.zego.zegoexpress.entity.ZegoCustomVideoCaptureConfig;
 import im.zego.zegoexpress.entity.ZegoUser;
 
 
@@ -59,6 +62,8 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
     private String anchorStreamID = ZegoUtil.getPublishStreamID();
 
     private FilterType chooseFilterType;
+    private ZegoExpressEngine engine;
+    private ZegoVideoBufferType videoBufferType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         chooseFilterType = (FilterType) getIntent().getSerializableExtra("FilterType");
 
         mBeautyControlView.setOnFUControlListener(mFURenderer);
-
+        videoBufferType=ZegoVideoBufferType.getZegoVideoBufferType(getIntent().getIntExtra("videoBufferType", 0));
         // 初始化SDK
         initSDK();
     }
@@ -151,7 +156,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         activity.startActivity(intent);
     }
 
-    VideoCaptureFromCamera videoCaptureFromCamera;
+    IZegoCustomVideoCaptureHandler videoCaptureFromCamera;
 
     /**
      * 初始化SDK逻辑
@@ -162,9 +167,17 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         Log.i("ZegoExpressEngine Version", ZegoExpressEngine.getVersion());
 
         // 设置外部滤镜---必须在初始化 ZEGO SDK 之前设置，否则不会回调   SyncTexture
-        ZegoExpressEngine.createEngine(GetAppIDConfig.appID, GetAppIDConfig.appSign, true, ZegoScenario.LIVE, this.getApplication(), null);
+        engine=ZegoExpressEngine.createEngine(GetAppIDConfig.appID, GetAppIDConfig.appSign, true, ZegoScenario.LIVE, this.getApplication(), null);
         //  if (FilterType.FilterType_SurfaceTexture == chooseFilterType) {
-        videoCaptureFromCamera = new VideoCaptureFromCamera(mFURenderer);
+        if(videoBufferType==ZegoVideoBufferType.SURFACE_TEXTURE){
+            videoCaptureFromCamera=new VideoCaptureFromCamera2((mFURenderer));
+        }else if(videoBufferType==ZegoVideoBufferType.RAW_DATA){
+            videoCaptureFromCamera = new VideoCaptureFromCamera(mFURenderer);
+        }
+        ZegoCustomVideoCaptureConfig zegoCustomVideoCaptureConfig=new ZegoCustomVideoCaptureConfig();
+        zegoCustomVideoCaptureConfig.bufferType=videoBufferType;
+        engine.enableCustomVideoCapture(true,zegoCustomVideoCaptureConfig);
+
         //videoCaptureFromCamera.setView();
         ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(videoCaptureFromCamera);
         // }
