@@ -38,6 +38,7 @@ import im.zego.zegoexpress.constants.ZegoPublisherState;
 import im.zego.zegoexpress.constants.ZegoRoomState;
 import im.zego.zegoexpress.constants.ZegoScenario;
 import im.zego.zegoexpress.constants.ZegoVideoBufferType;
+import im.zego.zegoexpress.constants.ZegoViewMode;
 import im.zego.zegoexpress.entity.ZegoCanvas;
 import im.zego.zegoexpress.entity.ZegoCustomVideoCaptureConfig;
 import im.zego.zegoexpress.entity.ZegoCustomVideoProcessConfig;
@@ -227,8 +228,9 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
             public void onRoomStateUpdate(String roomID, ZegoRoomState state, int errorCode, JSONObject extendedData) {
                 CustomDialog.createDialog(FUBeautyActivity.this).cancel();
                 if (errorCode == 0) {
-
-                    ZegoExpressEngine.getEngine().startPreview(new ZegoCanvas(binding.preview));
+                    ZegoCanvas preCanvas =new ZegoCanvas(binding.preview);
+                    preCanvas.viewMode= ZegoViewMode.ASPECT_FILL;
+                    ZegoExpressEngine.getEngine().startPreview(preCanvas);
                     // 开始推流
                     ZegoExpressEngine.getEngine().startPublishingStream(roomID);
                 } else {

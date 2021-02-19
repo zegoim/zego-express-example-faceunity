@@ -59,7 +59,7 @@ public class VideoCaptureFromCamera2 extends IZegoCustomVideoCaptureHandler impl
     private int mCaptureHeight = 720;
     private int mViewWidth = 0;
     private int mViewHeight = 0;
-    private int mViewMode = 0;
+    private int mViewMode = 1;
     private int mFrameRate = 15;
     private int mDisplayRotation = 0;
     private int mImageRotation = 0;
