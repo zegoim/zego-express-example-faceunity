@@ -31,28 +31,77 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="40dp"
-        android:id="@+id/videoBufferTypeDescribe"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:background="@mipmap/ic_mark" />
-    <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="40dp"
-                android:text="@string/tx_filter_type"
-                android:textStyle="bold" />
 
-</LinearLayout>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/videofilterTypeDescribe"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/ic_mark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/tx_filter_way"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <RadioGroup
+                android:id="@+id/captureOrProcess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/videoCapture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/use_video_capture">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/videoProcess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_video_process" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/videoBufferTypeDescribe"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/ic_mark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/tx_filter_type"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/zegoCustomCapture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -67,7 +116,7 @@
 
 
                     <RadioButton
-                        android:id="@+id/radioMem"
+                        android:id="@+id/captureMem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
@@ -76,7 +125,44 @@
 
 
                     <RadioButton
-                        android:id="@+id/radioSurfaceTexture"
+                        android:id="@+id/captureSurfaceTexture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/tx_surface_texture" />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/zegoProcess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RadioGroup
+                    android:id="@+id/processBufferType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:id="@+id/processTexture2D"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+
+                        android:text="@string/tx_sync_gl_texture_2d" />
+
+
+                    <RadioButton
+                        android:id="@+id/processSurfaceTexture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -153,7 +239,20 @@
                 android:layout_marginTop="20dp"
                 android:onClick="onClickLoginRoomAndPublish"
                 android:text="@string/tx_login_room" />
-
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:id="@+id/zego_sdk_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:id="@+id/faceunity_sdk_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
         </LinearLayout>
     </LinearLayout>
 </layout>

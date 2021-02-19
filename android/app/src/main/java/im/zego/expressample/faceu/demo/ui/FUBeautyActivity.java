@@ -21,6 +21,8 @@ import im.zego.expressample.faceu.demo.GetAppIDConfig;
 import im.zego.expressample.faceu.demo.capture.VideoCaptureFromCamera;
 import im.zego.expressample.faceu.demo.capture.VideoCaptureFromCamera2;
 import im.zego.expressample.faceu.demo.faceunity.FURenderer;
+import im.zego.expressample.faceu.demo.process.VideoFilterByProcess;
+import im.zego.expressample.faceu.demo.process.VideoFilterByProcess2;
 import im.zego.expressample.faceu.demo.util.ZegoUtil;
 import im.zego.expressample.faceu.demo.view.BeautyControlView;
 import im.zego.expressample.faceu.demo.view.CustomDialog;
@@ -28,6 +30,7 @@ import im.zego.expresssample.faceu.demo.R;
 import im.zego.expresssample.faceu.demo.databinding.ActivityFuBaseBinding;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.callback.IZegoCustomVideoCaptureHandler;
+import im.zego.zegoexpress.callback.IZegoCustomVideoProcessHandler;
 import im.zego.zegoexpress.callback.IZegoDestroyCompletionCallback;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
 import im.zego.zegoexpress.constants.ZegoPublishChannel;
@@ -37,6 +40,7 @@ import im.zego.zegoexpress.constants.ZegoScenario;
 import im.zego.zegoexpress.constants.ZegoVideoBufferType;
 import im.zego.zegoexpress.entity.ZegoCanvas;
 import im.zego.zegoexpress.entity.ZegoCustomVideoCaptureConfig;
+import im.zego.zegoexpress.entity.ZegoCustomVideoProcessConfig;
 import im.zego.zegoexpress.entity.ZegoUser;
 
 
@@ -99,6 +103,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
 
         mBeautyControlView.setOnFUControlListener(mFURenderer);
         videoBufferType=ZegoVideoBufferType.getZegoVideoBufferType(getIntent().getIntExtra("videoBufferType", 0));
+
         // 初始化SDK
         initSDK();
     }
@@ -125,6 +130,14 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         if (videoCaptureFromCamera != null) {
             videoCaptureFromCamera.onStop(ZegoPublishChannel.MAIN);
         }
+        if(videoFilterByProcess!=null&&videoBufferType==ZegoVideoBufferType.SURFACE_TEXTURE){
+            ((VideoFilterByProcess)videoFilterByProcess).stopAndDeAllocate();
+        }
+        if(videoFilterByProcess!=null&&videoBufferType==ZegoVideoBufferType.GL_TEXTURE_2D){
+            ((VideoFilterByProcess2)videoFilterByProcess).stopAndDeAllocate();
+
+        }
+
         ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(null);
         // 停止预览
         ZegoExpressEngine.getEngine().stopPreview();
@@ -136,6 +149,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         ZegoExpressEngine.getEngine().logoutRoom(mRoomID);
 
         ZegoExpressEngine.getEngine().setEventHandler(null);
+        ZegoExpressEngine.destroyEngine(null);
 
     }
 
@@ -157,7 +171,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
     }
 
     IZegoCustomVideoCaptureHandler videoCaptureFromCamera;
-
+    IZegoCustomVideoProcessHandler videoFilterByProcess;
     /**
      * 初始化SDK逻辑
      * 初始化成功后登录房间并推流
@@ -169,17 +183,28 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
         // 设置外部滤镜---必须在初始化 ZEGO SDK 之前设置，否则不会回调   SyncTexture
         engine=ZegoExpressEngine.createEngine(GetAppIDConfig.appID, GetAppIDConfig.appSign, true, ZegoScenario.LIVE, this.getApplication(), null);
         //  if (FilterType.FilterType_SurfaceTexture == chooseFilterType) {
-        if(videoBufferType==ZegoVideoBufferType.SURFACE_TEXTURE){
+        if(VideoFilterMainUI.useExpressCustomCapture&&videoBufferType==ZegoVideoBufferType.SURFACE_TEXTURE){
             videoCaptureFromCamera=new VideoCaptureFromCamera2((mFURenderer));
-        }else if(videoBufferType==ZegoVideoBufferType.RAW_DATA){
+        }else if(VideoFilterMainUI.useExpressCustomCapture&&videoBufferType==ZegoVideoBufferType.RAW_DATA){
             videoCaptureFromCamera = new VideoCaptureFromCamera(mFURenderer);
+        }else if(!VideoFilterMainUI.useExpressCustomCapture&&videoBufferType == ZegoVideoBufferType.SURFACE_TEXTURE){
+            videoFilterByProcess =new VideoFilterByProcess(mFURenderer);
+        }else if(!VideoFilterMainUI.useExpressCustomCapture&&videoBufferType == ZegoVideoBufferType.GL_TEXTURE_2D){
+            videoFilterByProcess =new VideoFilterByProcess2(mFURenderer);
         }
-        ZegoCustomVideoCaptureConfig zegoCustomVideoCaptureConfig=new ZegoCustomVideoCaptureConfig();
-        zegoCustomVideoCaptureConfig.bufferType=videoBufferType;
-        engine.enableCustomVideoCapture(true,zegoCustomVideoCaptureConfig);
+        if(VideoFilterMainUI.useExpressCustomCapture) {
+            ZegoCustomVideoCaptureConfig zegoCustomVideoCaptureConfig = new ZegoCustomVideoCaptureConfig();
+            zegoCustomVideoCaptureConfig.bufferType = videoBufferType;
+            engine.enableCustomVideoCapture(true, zegoCustomVideoCaptureConfig);
 
-        //videoCaptureFromCamera.setView();
-        ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(videoCaptureFromCamera);
+            //videoCaptureFromCamera.setView();
+            ZegoExpressEngine.getEngine().setCustomVideoCaptureHandler(videoCaptureFromCamera);
+        }else{
+            ZegoCustomVideoProcessConfig zegoCustomVideoProcessConfig =new ZegoCustomVideoProcessConfig();
+            zegoCustomVideoProcessConfig.bufferType =videoBufferType;
+            engine.enableCustomVideoProcessing(true,zegoCustomVideoProcessConfig);
+            ZegoExpressEngine.getEngine().setCustomVideoProcessHandler(videoFilterByProcess);
+        }
         // }
         // 初始化成功，登录房间并推流
         startPublish();
@@ -205,7 +230,7 @@ public class FUBeautyActivity extends Activity implements FURenderer.OnTrackingS
 
                     ZegoExpressEngine.getEngine().startPreview(new ZegoCanvas(binding.preview));
                     // 开始推流
-                    ZegoExpressEngine.getEngine().startPublishingStream(anchorStreamID);
+                    ZegoExpressEngine.getEngine().startPublishingStream(roomID);
                 } else {
 
                     Toast.makeText(FUBeautyActivity.this, "login room failure", Toast.LENGTH_SHORT).show();

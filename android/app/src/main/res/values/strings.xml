@@ -11,7 +11,7 @@
 
     <string name="fu_base_debug">Resolution:\n\t%dX%d\nFPS: %d\nRender time:\n\t%dms</string>
 
-    <string name="videoBufferType_describe">i420Mem: asynchronous transfer of I420 image data  \n\n surface_texture:asynchronous transfer texture ID, SDK will throw RGBA32 image data, can pass the pre-processed texture ID to SDK </string>
+    <string name="videoBufferType_describe">i420Mem:  I420 raw data  \n\n surface_texture:  use surface_texture </string>
 
     <string name="memTexture2D_describe"> asynchronous transfer texture ID, SDK will throw RGBA32 image data, can pass the pre-processed texture ID to SDK </string>
     through onProcessCallback method
@@ -20,7 +20,7 @@
     <string name="i420Mem_describe"> asynchronous transfer of I420 image data </string>
     <string name="surfaceTexture_describe"> passes the SurfaceTexture, and the SDK calls getSurfaceTexture of this filter to get the SurfaceTexture object </string>
 
-    <string name="tx_filter_type">Select the type of data to be passed before processing: </string>
+    <string name="tx_filter_type">Select the type of data : </string>
     <string name="room_id_describe">roomID is the identity of a room, which is represented by a string of no more than 128 bytes in length. It is necessary to ensure that the roomID is globally unique </string>
     <string name="tx_publish_success"> push stream completion </string>
 
@@ -34,10 +34,10 @@
     <string name="camera_dialog_open"> Retry </string>
     <string name="camera_dialog_back"> log out </string>
 
-    <string name="tx_sync_gl_texture_2d">BUFFER_TYPE_SYNC_GL_TEXTURE_2D</string>
+    <string name="tx_sync_gl_texture_2d">BUFFER_TYPE_GL_TEXTURE_2D</string>
     <string name="tx_mem_gl_texture_2d">BUFFER_TYPE_HYBRID_MEM_GL_TEXTURE_2D</string>
     <string name="tx_mem_rgba32">BUFFER_TYPE_MEM</string>
-    <string name="tx_asyn_i420_mem">BUFFER_TYPE_ASYNC_I420_MEM</string>
+    <string name="tx_asyn_i420_mem">BUFFER_TYPE_I420_MEM</string>
     <string name="tx_surface_texture">BUFFER_TYPE_SURFACE_TEXTURE</string>
 
     <string name="tx_has_no_fu_authpack"> faceunity ’s certificate is invalid, please replace the valid authpack file </string>
@@ -242,6 +242,11 @@
     <string name="toast_delete_succeed"> deleted successfully </string>
         
     <string name="toast_delete_failed"> Deletion failed </string>
+    <string name="use_video_capture">Use Zego Express custom capture to achieve video filter</string>
+    <string name="use_video_process">Use Zego Express video pre-processing to implement filters</string>
+    <string name="tx_filter_way">Please choose how to implement the video filter</string>
+    <string name="videofilterType_describe">1. Custom capture method: the user takes over the original video data collection \n 2. Video pre-processing: Zego SDK collects camera data and throws it to the user</string>
+    <string name="videoBufferType2_describe" >GLTEXTURE_2D:  GLTEXTURE_2D Type  \n\n surface_texture:  use surface_texture </string>
 
         
 

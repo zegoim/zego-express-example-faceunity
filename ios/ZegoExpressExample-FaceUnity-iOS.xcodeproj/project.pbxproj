@@ -3,18 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8618E7D825B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618E7D725B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.m */; };
 		86783EDD2466D75B00051FC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783EDC2466D75B00051FC0 /* AppDelegate.m */; };
 		86783EE02466D75B00051FC0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783EDF2466D75B00051FC0 /* SceneDelegate.m */; };
 		86783EE62466D75B00051FC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86783EE42466D75B00051FC0 /* Main.storyboard */; };
 		86783EE82466D75E00051FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86783EE72466D75E00051FC0 /* Assets.xcassets */; };
 		86783EEB2466D75E00051FC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86783EE92466D75E00051FC0 /* LaunchScreen.storyboard */; };
 		86783EEE2466D75E00051FC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783EED2466D75E00051FC0 /* main.m */; };
-		86783F212467A5C100051FC0 /* ZegoExpressEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86783F1F2467A31100051FC0 /* ZegoExpressEngine.framework */; };
-		86783F222467A5C100051FC0 /* ZegoExpressEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86783F1F2467A31100051FC0 /* ZegoExpressEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		86783F772467A69F00051FC0 /* dataSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86783F2D2467A69F00051FC0 /* dataSource.plist */; };
 		86783F782467A69F00051FC0 /* beautyMakeup.json in Resources */ = {isa = PBXBuildFile; fileRef = 86783F2E2467A69F00051FC0 /* beautyMakeup.json */; };
 		86783F792467A69F00051FC0 /* makeup.json in Resources */ = {isa = PBXBuildFile; fileRef = 86783F2F2467A69F00051FC0 /* makeup.json */; };
@@ -70,7 +69,7 @@
 		86783FD92467B0F700051FC0 /* fxaa.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86783FD02467B0F700051FC0 /* fxaa.bundle */; };
 		86783FDA2467B0F700051FC0 /* face_beautification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86783FD12467B0F700051FC0 /* face_beautification.bundle */; };
 		86783FDE2467D2AF00051FC0 /* ZGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FDD2467D2AF00051FC0 /* ZGLoginViewController.m */; };
-		86783FE12467D42B00051FC0 /* ZGPublishStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FE02467D42B00051FC0 /* ZGPublishStreamViewController.m */; };
+		86783FE12467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FE02467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.m */; };
 		86783FE42467D43700051FC0 /* ZGPlayStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FE32467D43700051FC0 /* ZGPlayStreamViewController.m */; };
 		86783FE92467DF2800051FC0 /* ZGCaptureDeviceCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FE62467DF2800051FC0 /* ZGCaptureDeviceCamera.m */; };
 		86783FEE2467E00400051FC0 /* ZGKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 86783FED2467E00400051FC0 /* ZGKeyCenter.m */; };
@@ -109,6 +108,8 @@
 		8678406E246A88EE00051FC0 /* fengya_ztt_fu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8678404E246A88EE00051FC0 /* fengya_ztt_fu.bundle */; };
 		8678406F246A88EE00051FC0 /* bling.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8678404F246A88EE00051FC0 /* bling.bundle */; };
 		86784070246A88EE00051FC0 /* FaceUnity.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86784050246A88EE00051FC0 /* FaceUnity.xcassets */; };
+		86CCA2F625ADAFE5003DD3C0 /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA2F425ADAFD9003DD3C0 /* ZegoExpressEngine.xcframework */; };
+		86CCA2F725ADAFE5003DD3C0 /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA2F425ADAFD9003DD3C0 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -118,7 +119,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				86783F222467A5C100051FC0 /* ZegoExpressEngine.framework in Embed Frameworks */,
+				86CCA2F725ADAFE5003DD3C0 /* ZegoExpressEngine.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +127,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8618E7D625B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPublishStreamCustomVideoProcessViewController.h; sourceTree = "<group>"; };
+		8618E7D725B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPublishStreamCustomVideoProcessViewController.m; sourceTree = "<group>"; };
 		86783ED82466D75B00051FC0 /* ZegoExpressExample-FaceUnity-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZegoExpressExample-FaceUnity-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86783EDB2466D75B00051FC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		86783EDC2466D75B00051FC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,7 +139,6 @@
 		86783EEA2466D75E00051FC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86783EEC2466D75E00051FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86783EED2466D75E00051FC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		86783F1F2467A31100051FC0 /* ZegoExpressEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoExpressEngine.framework; sourceTree = "<group>"; };
 		86783F2D2467A69F00051FC0 /* dataSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dataSource.plist; sourceTree = "<group>"; };
 		86783F2E2467A69F00051FC0 /* beautyMakeup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beautyMakeup.json; sourceTree = "<group>"; };
 		86783F2F2467A69F00051FC0 /* makeup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = makeup.json; sourceTree = "<group>"; };
@@ -233,8 +235,8 @@
 		86783FD52467B0F700051FC0 /* FURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FURenderer.h; sourceTree = "<group>"; };
 		86783FDC2467D2AF00051FC0 /* ZGLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGLoginViewController.h; sourceTree = "<group>"; };
 		86783FDD2467D2AF00051FC0 /* ZGLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGLoginViewController.m; sourceTree = "<group>"; };
-		86783FDF2467D42B00051FC0 /* ZGPublishStreamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPublishStreamViewController.h; sourceTree = "<group>"; };
-		86783FE02467D42B00051FC0 /* ZGPublishStreamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPublishStreamViewController.m; sourceTree = "<group>"; };
+		86783FDF2467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPublishStreamCustomVideoCaptureViewController.h; sourceTree = "<group>"; };
+		86783FE02467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPublishStreamCustomVideoCaptureViewController.m; sourceTree = "<group>"; };
 		86783FE22467D43700051FC0 /* ZGPlayStreamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPlayStreamViewController.h; sourceTree = "<group>"; };
 		86783FE32467D43700051FC0 /* ZGPlayStreamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPlayStreamViewController.m; sourceTree = "<group>"; };
 		86783FE62467DF2800051FC0 /* ZGCaptureDeviceCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCaptureDeviceCamera.m; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		8678404E246A88EE00051FC0 /* fengya_ztt_fu.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = fengya_ztt_fu.bundle; sourceTree = "<group>"; };
 		8678404F246A88EE00051FC0 /* bling.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = bling.bundle; sourceTree = "<group>"; };
 		86784050246A88EE00051FC0 /* FaceUnity.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FaceUnity.xcassets; sourceTree = "<group>"; };
+		86CCA2F425ADAFD9003DD3C0 /* ZegoExpressEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ZegoExpressEngine.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,17 +293,35 @@
 			files = (
 				86783FC92467AFD200051FC0 /* libc++.tbd in Frameworks */,
 				86783FD62467B0F700051FC0 /* libnama.a in Frameworks */,
+				86CCA2F625ADAFE5003DD3C0 /* ZegoExpressEngine.xcframework in Frameworks */,
 				86783FC72467AFB200051FC0 /* OpenGLES.framework in Frameworks */,
 				86783FC62467AFAB00051FC0 /* Accelerate.framework in Frameworks */,
 				86783FC52467AFA500051FC0 /* CoreMedia.framework in Frameworks */,
 				86783FC42467AF9F00051FC0 /* AVFoundation.framework in Frameworks */,
-				86783F212467A5C100051FC0 /* ZegoExpressEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8618E7D425B531DB00EE92E8 /* CustomVideoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				86783FDF2467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.h */,
+				86783FE02467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.m */,
+			);
+			path = CustomVideoCapture;
+			sourceTree = "<group>";
+		};
+		8618E7D525B531E600EE92E8 /* CustomVideoProcess */ = {
+			isa = PBXGroup;
+			children = (
+				8618E7D625B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.h */,
+				8618E7D725B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.m */,
+			);
+			path = CustomVideoProcess;
+			sourceTree = "<group>";
+		};
 		86783ECF2466D75B00051FC0 = {
 			isa = PBXGroup;
 			children = (
@@ -344,8 +365,8 @@
 		86783EF424679FD000051FC0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				86CCA2F425ADAFD9003DD3C0 /* ZegoExpressEngine.xcframework */,
 				86783FCA2467B0F700051FC0 /* FaceUnity */,
-				86783F1F2467A31100051FC0 /* ZegoExpressEngine.framework */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -572,10 +593,10 @@
 		86783FEA2467DF9A00051FC0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8618E7D525B531E600EE92E8 /* CustomVideoProcess */,
+				8618E7D425B531DB00EE92E8 /* CustomVideoCapture */,
 				86783FDC2467D2AF00051FC0 /* ZGLoginViewController.h */,
 				86783FDD2467D2AF00051FC0 /* ZGLoginViewController.m */,
-				86783FDF2467D42B00051FC0 /* ZGPublishStreamViewController.h */,
-				86783FE02467D42B00051FC0 /* ZGPublishStreamViewController.m */,
 				86783FE22467D43700051FC0 /* ZGPlayStreamViewController.h */,
 				86783FE32467D43700051FC0 /* ZGPlayStreamViewController.m */,
 				867840282469494D00051FC0 /* ZGPublishSettingTableViewController.h */,
@@ -683,8 +704,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86783EF12466D75E00051FC0 /* Build configuration list for PBXNativeTarget "ZegoExpressExample-FaceUnity-iOS" */;
 			buildPhases = (
-				86784071246A8E4400051FC0 /* [Script] Download SDK If Need */,
-				86784072246A8E5700051FC0 /* [Script] Remove Simulator Architecture When Release */,
 				86783ED42466D75B00051FC0 /* Sources */,
 				86783ED52466D75B00051FC0 /* Frameworks */,
 				86783ED62466D75B00051FC0 /* Resources */,
@@ -792,45 +811,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		86784071246A8E4400051FC0 /* [Script] Download SDK If Need */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Script] Download SDK If Need";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ ! -e \"Libs/ZegoExpressEngine.framework\" ]; then\n\n    cd $SRCROOT\n    echo \"[*] cd into: \"`pwd`\n\n    URL=\"https://storage.zego.im/express/video/ios/en/zego-express-video-ios-en.zip\"\n\n    if [ ! -d \"Libs/__sdk_download_tmp__\" ]; then\n        mkdir Libs/__sdk_download_tmp__\n    fi\n\n    echo \"[*] Downloading SDK from: $URL\"\n    curl \"$URL\" --output Libs/__sdk_download_tmp__/zego-express-video-ios-en.zip\n\n    cd Libs/__sdk_download_tmp__\n    echo \"[*] cd into: \"`pwd`\n\n    echo \"[*] Unzip zego-express-video-ios-en.zip\"\n    unzip -o zego-express-video-ios-en.zip\n\n    for element in `ls`; do\n        dir=$element\n        if [ -d $dir ]; then\n            cd $dir\n            echo \"[*] cd into: \"`pwd`\n            break\n        fi\n    done\n\n    if [ -d \"armv7-arm64-x86_64\" ]; then\n        cd armv7-arm64-x86_64\n        echo \"[*] cd into: \"`pwd`\n        echo \"[*] Move ZegoExpressEngine.framework from: \"`pwd`\" to: $SRCROOT/Libs\"\n        mv ZegoExpressEngine.framework $SRCROOT/Libs\n    fi\n\n    echo \"[*] Remove folder: $SRCROOT/Libs/__sdk_download_tmp__\"\n    rm -rf $SRCROOT/Libs/__sdk_download_tmp__\nfi\n";
-		};
-		86784072246A8E5700051FC0 /* [Script] Remove Simulator Architecture When Release */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Script] Remove Simulator Architecture When Release";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == \"Release\" ]; then\n\n    echo \"[*] Build release, remove simulator architecture\"\n\n    cd Libs/ZegoExpressEngine.framework\n    echo \"[*] cd into: \"`pwd`\n\n    if [ -e \"ZegoExpressEngine\" ]; then\n\n        lipo -info ZegoExpressEngine\n\n        echo \"[*] remove i386 architecture\"\n        lipo ZegoExpressEngine -remove i386 -output ZegoExpressEngine\n\n        echo \"[*] remove x86_64 architecture\"\n        lipo ZegoExpressEngine -remove x86_64 -output ZegoExpressEngine\n\n        lipo -info ZegoExpressEngine\n\n    fi\n\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		86783ED42466D75B00051FC0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -845,7 +825,7 @@
 				86783F7D2467A69F00051FC0 /* FUSingleMakeupModel.m in Sources */,
 				86783F8E2467A69F00051FC0 /* FUMakeupTopCell.m in Sources */,
 				86783FB92467A7E300051FC0 /* MJPropertyKey.m in Sources */,
-				86783FE12467D42B00051FC0 /* ZGPublishStreamViewController.m in Sources */,
+				86783FE12467D42B00051FC0 /* ZGPublishStreamCustomVideoCaptureViewController.m in Sources */,
 				86783F902467A69F00051FC0 /* FUMakeupBottomCell.m in Sources */,
 				86783FB82467A7E300051FC0 /* NSString+MJExtension.m in Sources */,
 				86783FEE2467E00400051FC0 /* ZGKeyCenter.m in Sources */,
@@ -853,6 +833,7 @@
 				86783F8A2467A69F00051FC0 /* FUBeautyView.m in Sources */,
 				86783F7C2467A69F00051FC0 /* FUMakeupSupModel.m in Sources */,
 				86783FB42467A7E300051FC0 /* NSObject+MJCoding.m in Sources */,
+				8618E7D825B5325F00EE92E8 /* ZGPublishStreamCustomVideoProcessViewController.m in Sources */,
 				86783F7B2467A69F00051FC0 /* FULiveModel.m in Sources */,
 				86783F7E2467A69F00051FC0 /* FUMakeupModel.m in Sources */,
 				86783F922467A69F00051FC0 /* FUMakeupSlider.m in Sources */,
@@ -1046,7 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 200607;
+				CURRENT_PROJECT_VERSION = 210112;
 				DEVELOPMENT_TEAM = B82BHJ5H89;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1064,7 +1045,7 @@
 					"$(PROJECT_DIR)/Libs",
 					"$(PROJECT_DIR)/Libs/FaceUnity",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "im.zego.ZegoExpressExample-FaceUnity-iOS";
 				PRODUCT_NAME = "ZegoExpressExample-FaceUnity-iOS";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1076,7 +1057,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 200607;
+				CURRENT_PROJECT_VERSION = 210112;
 				DEVELOPMENT_TEAM = B82BHJ5H89;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1094,7 +1075,7 @@
 					"$(PROJECT_DIR)/Libs",
 					"$(PROJECT_DIR)/Libs/FaceUnity",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "im.zego.ZegoExpressExample-FaceUnity-iOS";
 				PRODUCT_NAME = "ZegoExpressExample-FaceUnity-iOS";
 				TARGETED_DEVICE_FAMILY = "1,2";

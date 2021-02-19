@@ -5,18 +5,18 @@
     <string name="tx_publishing">正在推流</string>
     <string name="tx_publish_fail">推流失败</string>
     <string name="tx_stop_publish_finish">停止推流完成</string>
-    <string name="videoBufferType_describe">i420Mem: 异步传递 I420 的图像数据  \n\n surface_texture:异步传递纹理 ID，SDK 会抛出 RGBA32 的图像数据，可通过 onProcessCallback 方法传递前处理后的纹理 ID 给 SDK  </string>
+    <string name="videoBufferType_describe">i420Mem: I420 裸数据  \n\n surface_texture: surface_texture类型  </string>
     <string name="memTexture2D_describe">异步传递纹理 ID，SDK 会抛出 RGBA32 的图像数据，可通过 onProcessCallback 方法传递前处理后的纹理 ID 给 SDK </string>
     <string name="i420Mem_describe">异步传递 I420 的图像数据</string>
     <string name="surfaceTexture_describe">传递 SurfaceTexture，SDK 会调用此滤镜的 getSurfaceTexture 获取 SurfaceTexture 对象</string>
     <string name="loading"> Loading </string>
     <string name="tx_video_filter">ZegoExpressExample-FaceUnity</string>
-    <string name="tx_sync_gl_texture_2d">BUFFER_TYPE_SYNC_GL_TEXTURE_2D</string>
+    <string name="tx_sync_gl_texture_2d">BUFFER_TYPE_GL_TEXTURE_2D</string>
     <string name="tx_mem_gl_texture_2d">BUFFER_TYPE_HYBRID_MEM_GL_TEXTURE_2D</string>
     <string name="tx_mem_rgba32">BUFFER_TYPE_MEM</string>
-    <string name="tx_asyn_i420_mem">BUFFER_TYPE_ASYNC_I420_MEM</string>
+    <string name="tx_asyn_i420_mem">BUFFER_TYPE_I420_MEM</string>
     <string name="tx_surface_texture">BUFFER_TYPE_SURFACE_TEXTURE</string>
-    <string name="tx_filter_type">请选择前处理传递数据类型: </string>
+    <string name="tx_filter_type">请选择传递数据类型: </string>
     <string name="room_id_describe">roomID为一个房间的标识，使用长度不超过128字节的字符串表示，需要保证房间ID的全局唯一</string>
     <string name="tx_publish_success">推流完成</string>
     <!--faceunity 相关text-->
@@ -141,4 +141,9 @@
 
 
     <string name="recover">恢复</string>
+    <string name="use_video_capture">使用Zego Express 自定义采集实现滤镜</string>
+    <string name="use_video_process">使用Zego Express视频前处理实现滤镜</string>
+    <string name="tx_filter_way">请选择实现滤镜的方式</string>
+    <string name="videofilterType_describe">1.自定义采集方式:由用户接管原始视频数据采集 \n 2.视频前处理:由Zego SDK采集摄像头数据并抛给用户</string>
+    <string name="videoBufferType2_describe" >GLTEXTURE_2D：GLTEXTURE_2D类型 \n \n surface_texture：使用surface_texture</string>
 </resources>

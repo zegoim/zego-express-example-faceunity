@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 
 import im.zego.expressample.faceu.demo.faceunity.FURenderer;
+import im.zego.expressample.faceu.demo.util.ZegoUtil;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.callback.IZegoCustomVideoCaptureHandler;
 import im.zego.zegoexpress.constants.ZegoPublishChannel;
@@ -96,7 +97,7 @@ public class VideoCaptureFromCamera extends IZegoCustomVideoCaptureHandler imple
     @Override
     public void onStart(ZegoPublishChannel channel) {
         Log.e(TAG, "onStart");
-
+        Log.e(ZegoUtil.VIDEO_FILTER_TAG,"Zego Custom Capture + RawData");
         mThread = new HandlerThread("camera-cap");
         mThread.start();
         // 创建camera异步消息处理handler

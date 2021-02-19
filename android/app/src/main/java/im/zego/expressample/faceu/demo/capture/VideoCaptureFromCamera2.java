@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import im.zego.expressample.faceu.demo.faceunity.FURenderer;
+import im.zego.expressample.faceu.demo.util.ZegoUtil;
 import im.zego.expressample.faceu.demo.ve_gl.EglBase;
 import im.zego.expressample.faceu.demo.ve_gl.EglBase14;
 import im.zego.expressample.faceu.demo.ve_gl.GlRectDrawer;
@@ -37,10 +38,10 @@ import im.zego.zegoexpress.constants.ZegoPublishChannel;
  */
 
 /**
-         * VideoCaptureFromCamera2
-         * To collect data from the camera and pass it to the ZEGO SDK, you need to inherit the ZegoVideoCaptureDevice class that implements the ZEGO SDK
+ * VideoCaptureFromCamera2
+ * To collect data from the camera and pass it to the ZEGO SDK, you need to inherit the ZegoVideoCaptureDevice class that implements the ZEGO SDK
  * Use SURFACE_TEXTURE to transfer data, convert the SurfaceTexture object returned by the client to EglSurface and then draw the image
-         */
+ */
 public class VideoCaptureFromCamera2 extends IZegoCustomVideoCaptureHandler implements
         SurfaceTexture.OnFrameAvailableListener,
         TextureView.SurfaceTextureListener {
@@ -102,13 +103,15 @@ public class VideoCaptureFromCamera2 extends IZegoCustomVideoCaptureHandler impl
     private float[] mCaptureMatrix = new float[16];
     private FURenderer fuRenderer;
     private TextureView mTextureView = null;
-
+    private static boolean stopFlag=true;
     public VideoCaptureFromCamera2(FURenderer furenderer) {
+        stopFlag=false;
         this.fuRenderer = furenderer;
     }
 
     @Override
     public void onStart(ZegoPublishChannel channel) {
+        Log.e(ZegoUtil.VIDEO_FILTER_TAG,"Zego Custom Capture + SurfaceTexture");
         if (channel == ZegoPublishChannel.MAIN) {
             allocateAndStart();
             cameraThreadHandler.postDelayed(new Runnable() {
@@ -184,6 +187,7 @@ public class VideoCaptureFromCamera2 extends IZegoCustomVideoCaptureHandler impl
 
     @Override
     public void onStop(ZegoPublishChannel channel) {
+        stopFlag=true;
         if (ZegoPublishChannel.MAIN == channel) {
             stopAndDeAllocate();
             fuRenderer.onSurfaceDestroyed();
@@ -1055,6 +1059,9 @@ public class VideoCaptureFromCamera2 extends IZegoCustomVideoCaptureHandler impl
     // Update the collected data in the SurfaceTexture.OnFrameAvailableListener callback
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        if(stopFlag){
+            return;
+        }
         // 绑定eglContext、eglDisplay、eglSurface
         mDummyContext.makeCurrent();
         surfaceTexture.updateTexImage();

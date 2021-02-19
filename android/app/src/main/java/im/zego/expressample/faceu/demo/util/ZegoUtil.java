@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  */
 
 public class ZegoUtil {
+    public static String VIDEO_FILTER_TAG="Zego Video Filter Way";
 
     /**
      * 字符串转换成 byte 数组

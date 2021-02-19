@@ -1,24 +1,23 @@
 //
-//  ZGPublishStreamViewController.m
+//  ZGPublishStreamCustomVideoProcessViewController.m
 //  ZegoExpressExample-FaceUnity-iOS
 //
-//  Created by Patrick Fu on 2020/5/10.
-//  Copyright © 2020 Zego. All rights reserved.
+//  Created by Patrick Fu on 2021/1/18.
+//  Copyright © 2021 Zego. All rights reserved.
 //
 
-#import "ZGPublishStreamViewController.h"
+#import "ZGPublishStreamCustomVideoProcessViewController.h"
 #import "ZGPublishSettingTableViewController.h"
 
 #import "ZGKeyCenter.h"
 #import "ZGUserIDHelper.h"
-#import "ZGCaptureDeviceCamera.h"
 
 #import <ZegoExpressEngine/ZegoExpressEngine.h>
 
 #import "FUManager.h"
 #import "FUAPIDemoBar.h"
 
-@interface ZGPublishStreamViewController () <ZegoEventHandler, ZegoCustomVideoCaptureHandler, ZGCaptureDeviceDataOutputPixelBufferDelegate, FUAPIDemoBarDelegate, UIPopoverPresentationControllerDelegate>
+@interface ZGPublishStreamCustomVideoProcessViewController () <ZegoEventHandler, ZegoCustomVideoProcessHandler, FUAPIDemoBarDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *previewView;
 
@@ -27,8 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *roomIDstreamIDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publishResolutionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publishQualityLabel;
-
-@property (nonatomic, strong) id<ZGCaptureDevice> captureDevice;
 
 @property (nonatomic, strong) UIBarButtonItem *settingButton;
 @property (nonatomic, strong) UIBarButtonItem *startLiveButton;
@@ -39,7 +36,7 @@
 
 @end
 
-@implementation ZGPublishStreamViewController
+@implementation ZGPublishStreamCustomVideoProcessViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,7 +53,6 @@
     [self setupFaceUnityDemoBar];
 
     // Start
-    [self setupCaptureDevice];
     [self createEngineAndLoginRoom];
     [self startLive];
 }
@@ -74,9 +70,6 @@
         // In general, developers do not need to listen to this callback.
         NSLog(@" 🚩 🏳️ Destroy ZegoExpressEngine complete");
     }];
-
-    // After destroying the engine, you will not receive the `-onStop:` callback, you need to stop the custom video caputre manually.
-    [self.captureDevice stopCapture];
 
     // In order not to affect the play stream demo, restore the default engine configuration.
     [ZegoExpressEngine setEngineConfig:[[ZegoEngineConfig alloc] init]];
@@ -148,28 +141,20 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)setupCaptureDevice {
-    self.captureDevice = [[ZGCaptureDeviceCamera alloc] initWithPixelFormatType:kCVPixelFormatType_32BGRA];
-    self.captureDevice.delegate = self;
-}
-
 - (void)createEngineAndLoginRoom {
-
-    // Set capture config
-    ZegoCustomVideoCaptureConfig *captureConfig = [[ZegoCustomVideoCaptureConfig alloc] init];
-    captureConfig.bufferType = ZegoVideoBufferTypeCVPixelBuffer;
-
-    ZegoEngineConfig *engineConfig = [[ZegoEngineConfig alloc] init];
-    engineConfig.customVideoCaptureMainConfig = captureConfig;
-
-    // Set engine config, must be called before create engine
-    [ZegoExpressEngine setEngineConfig:engineConfig];
 
     NSLog(@" 🚀 Create ZegoExpressEngine");
     [ZegoExpressEngine createEngineWithAppID:[ZGKeyCenter appID] appSign:[ZGKeyCenter appSign] isTestEnv:YES scenario:ZegoScenarioGeneral eventHandler:self];
 
-    // Set custom video capture handler
-    [[ZegoExpressEngine sharedEngine] setCustomVideoCaptureHandler:self];
+    // Init process config
+    ZegoCustomVideoProcessConfig *processConfig = [[ZegoCustomVideoProcessConfig alloc] init];
+    processConfig.bufferType = ZegoVideoBufferTypeCVPixelBuffer;
+
+    // Enable custom video process
+    [[ZegoExpressEngine sharedEngine] enableCustomVideoProcessing:YES config:processConfig];
+
+    // Set custom video process handler
+    [[ZegoExpressEngine sharedEngine] setCustomVideoProcessHandler:self];
 
     // Login room
     ZegoUser *user = [ZegoUser userWithUserID:[ZGUserIDHelper userID] userName:[ZGUserIDHelper userName]];
@@ -202,29 +187,15 @@
     self.publishQualityLabel.text = @"Quality:";
 }
 
-#pragma mark - ZegoCustomVideoCaptureHandler
+#pragma mark - ZegoCustomVideoProcessHandler
 
-// Note: This callback is not in the main thread. If you have UI operations, please switch to the main thread yourself.
-- (void)onStart:(ZegoPublishChannel)channel {
-    NSLog(@" 🚩 🟢 ZegoCustomVideoCaptureHandler onStart");
-    [self.captureDevice startCapture];
-}
-
-// Note: This callback is not in the main thread. If you have UI operations, please switch to the main thread yourself.
-- (void)onStop:(ZegoPublishChannel)channel {
-    NSLog(@" 🚩 🔴 ZegoCustomVideoCaptureHandler onStop");
-    [self.captureDevice stopCapture];
-}
-
-#pragma mark - ZGCustomVideoCapturePixelBufferDelegate
-
-- (void)captureDevice:(id<ZGCaptureDevice>)device didCapturedData:(CVPixelBufferRef)data presentationTimeStamp:(CMTime)timeStamp {
+- (void)onCapturedUnprocessedCVPixelBuffer:(CVPixelBufferRef)buffer timestamp:(CMTime)timestamp channel:(ZegoPublishChannel)channel {
 
     // ⭐️ Processing video frame data with FaceUnity
-    CVPixelBufferRef processedPixelBuffer = [[FUManager shareManager] renderItemsToPixelBuffer:data];
+    CVPixelBufferRef processedPixelBuffer = [[FUManager shareManager] renderItemsToPixelBuffer:buffer];
 
     // ⭐️ Send pixel buffer to ZEGO SDK
-    [[ZegoExpressEngine sharedEngine] sendCustomVideoCapturePixelBuffer:processedPixelBuffer timestamp:timeStamp];
+    [[ZegoExpressEngine sharedEngine] sendCustomVideoProcessedCVPixelBuffer:processedPixelBuffer timestamp:timestamp];
 }
 
 #pragma mark - ZegoEventHandler
@@ -355,7 +326,7 @@
     [self syncBeautyParams];
 }
 
--(void)restDefaultValue:(int)type{
+- (void)restDefaultValue:(int)type{
     if (type == 1) { // Skin beauty
         [[FUManager shareManager] setBeautyDefaultParameters:FUBeautyModuleTypeSkin];
     }

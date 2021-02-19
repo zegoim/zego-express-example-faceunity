@@ -1,5 +1,5 @@
 //
-//  ZGPublishStreamViewController.h
+//  ZGPublishStreamCustomVideoCaptureViewController.h
 //  ZegoExpressExample-FaceUnity-iOS
 //
 //  Created by Patrick Fu on 2020/5/10.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZGPublishStreamViewController : UIViewController
+@interface ZGPublishStreamCustomVideoCaptureViewController : UIViewController
 
 @property (nonatomic, copy) NSString *roomID;
 @property (nonatomic, copy) NSString *streamID;

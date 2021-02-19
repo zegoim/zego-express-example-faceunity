@@ -25,10 +25,10 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
     private ActivityVideoFilterMainBinding binding;
 
-
+    public static boolean useExpressCustomCapture=true;//使用自定义采集或前处理实现滤镜
 
     private static final int REQUEST_PERMISSION_CODE = 101;
-    private ZegoVideoBufferType videoBufferType=ZegoVideoBufferType.RAW_DATA;
+    private static ZegoVideoBufferType videoBufferType=ZegoVideoBufferType.RAW_DATA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,35 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_video_filter_main);
-
+        binding.captureOrProcess.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.videoCapture:
+                        binding.zegoProcess.setVisibility(View.GONE);
+                        binding.zegoCustomCapture.setVisibility(View.VISIBLE);
+                        useExpressCustomCapture = true;
+                        binding.captureMem.setChecked(true);
+                        videoBufferType=ZegoVideoBufferType.RAW_DATA;
+                        break;
+                    case R.id.videoProcess:
+                        binding.zegoCustomCapture.setVisibility(View.GONE);
+                        binding.zegoProcess.setVisibility(View.VISIBLE);
+                        useExpressCustomCapture =false;
+                        binding.processTexture2D.setChecked(true);
+                        videoBufferType=ZegoVideoBufferType.GL_TEXTURE_2D;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         // 获取选定的前处理传递数据的类型
         setCheckedFilterTypeListener();
 
         // 前处理传递数据类型说明的点击事件监听
         binding.videoBufferTypeDescribe.setOnClickListener(this);
-
+        binding.videofilterTypeDescribe.setOnClickListener(this);
         binding.goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +79,8 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
             // 初始化 FaceUnity
             FURenderer.initFURenderer(this);
         }
+        binding.zegoSdkVersion.setText("zego sdk version:"+ZegoExpressEngine.getVersion());
+        binding.faceunitySdkVersion.setText("faceunity sdk version:"+FURenderer.getVersion());
     }
 
     // 获取选定的前处理传递数据的类型
@@ -65,10 +89,25 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.radioMem:
+                    case R.id.captureMem:
                         videoBufferType=ZegoVideoBufferType.RAW_DATA;
                         break;
-                    case R.id.radioSurfaceTexture:
+                    case R.id.captureSurfaceTexture:
+                        videoBufferType=ZegoVideoBufferType.SURFACE_TEXTURE;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        binding.processBufferType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.processTexture2D:
+                        videoBufferType=ZegoVideoBufferType.GL_TEXTURE_2D;
+                        break;
+                    case R.id.processSurfaceTexture:
                         videoBufferType=ZegoVideoBufferType.SURFACE_TEXTURE;
                         break;
                     default:
@@ -145,8 +184,15 @@ public class VideoFilterMainUI extends Activity implements View.OnClickListener 
     public void onClick(View v) {
         int id = v.getId();
          if (id == R.id.videoBufferTypeDescribe) {
-            showPopWindows(getString(R.string.videoBufferType_describe), v);
+             if(useExpressCustomCapture) {
+                 showPopWindows(getString(R.string.videoBufferType_describe), v);
+             }else{
+                 showPopWindows(getString(R.string.videoBufferType2_describe), v);
+             }
         }
+         if(id == R.id.videofilterTypeDescribe){
+             showPopWindows(getString(R.string.videofilterType_describe), v);
+         }
     }
 
     /**
