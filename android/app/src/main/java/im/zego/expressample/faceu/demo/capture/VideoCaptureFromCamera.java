@@ -603,9 +603,9 @@ public class VideoCaptureFromCamera extends IZegoCustomVideoCaptureHandler imple
 
         long now;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            now = SystemClock.elapsedRealtimeNanos();
+          now = SystemClock.elapsedRealtime();
         } else {
-            now = TimeUnit.MILLISECONDS.toNanos(SystemClock.elapsedRealtime());
+          now = TimeUnit.MILLISECONDS.toMillis(SystemClock.elapsedRealtime());
         }
 
          mFurenderer.onDrawFrame(data, mWidth, mHeight, data, mWidth, mHeight);
